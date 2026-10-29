@@ -53,6 +53,36 @@ flowchart TD
    - When an application is marked `ISSUED`, a unique certificate registration number is generated (e.g. `CERT-2026-0004-9812A`).
    - Students can view and print/download an official, high-resolution digital certificate copy complete with college letterhead, official seals, and security verification hashes directly on their tracking page.
 
+## 📸 Screenshots
+
+### 1. Login Page
+
+![Login Page](screenshots/login-page.png)
+
+### 2. Student Dashboard
+
+![Student Dashboard](screenshots/student-dashboard.png)
+
+### 3. Admin Dashboard
+
+![Admin Dashboard](screenshots/admin-dashboard.png)
+
+### 4. Certificate Request
+
+![Certificate Request](screenshots/certificate-request.png)
+
+### 5. Request Tracking
+
+![Request Tracking](screenshots/request-tracking.png)
+
+### 6. Request Preview
+
+![Request Preview](screenshots/request-preview.png)
+
+### 7. Generated Certificate
+
+![Generated Certificate](screenshots/certificate.png)
+
 ---
 
 ## 💡 Object-Oriented Programming (OOP) Mapping
