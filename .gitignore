@@ -1,0 +1,26 @@
+# Maven build output
+target/
+
+# VS Code settings
+.vscode/
+
+# IDE settings
+.idea/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Compiled Java files
+*.class
+
+# Log files
+*.log
+
+# Node.js dependencies
+node_modules/
+
+# Operating system files
+.DS_Store
+Thumbs.db

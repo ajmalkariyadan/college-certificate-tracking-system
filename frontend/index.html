@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - College Certificate System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .login-wrapper {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #eff6ff 0%, #f8fafc 100%);
+        }
+        .login-card {
+            width: 100%;
+            max-width: 440px;
+            background: #ffffff;
+            border-radius: var(--radius-lg);
+            padding: 2.25rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+        }
+        .login-header {
+            text-align: center;
+            margin-bottom: 1.75rem;
+        }
+        .role-tabs {
+            display: flex;
+            background: #f1f5f9;
+            padding: 4px;
+            border-radius: var(--radius);
+            margin-bottom: 1.5rem;
+        }
+        .role-tab {
+            flex: 1;
+            padding: 0.6rem;
+            border: none;
+            background: transparent;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .role-tab.active {
+            background: #ffffff;
+            color: var(--primary);
+            box-shadow: var(--shadow-sm);
+        }
+        .demo-helpers {
+            margin-top: 1.5rem;
+            padding-top: 1.25rem;
+            border-top: 1px dashed var(--border);
+            text-align: center;
+        }
+        .demo-helpers p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .demo-btn-group {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-wrapper">
+    <div class="login-card">
+        <div class="login-header">
+            <div class="brand-icon" style="margin: 0 auto 0.75rem; width: 48px; height: 48px; font-size: 1.4rem;">🎓</div>
+            <h1 style="font-size: 1.45rem; font-weight: 700;">Certificate Portal</h1>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 0.2rem;">College Certificate Request &amp; Tracking System</p>
+        </div>
+
+        <!-- Role Selector Tabs -->
+        <div class="role-tabs">
+            <button type="button" id="tab-student" class="role-tab active">Student Login</button>
+            <button type="button" id="tab-admin" class="role-tab">Admin Login</button>
+        </div>
+
+        <div id="login-error" class="alert alert-danger" style="display: none;"></div>
+
+        <!-- Login Form -->
+        <form id="login-form">
+            <input type="hidden" id="role-input" value="STUDENT">
+
+            <div class="form-group">
+                <label class="form-label" for="username">Username / ID / Email</label>
+                <input type="text" id="username" class="form-control" placeholder="Student ID (e.g. STU2024001) or Email" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="password">Password</label>
+                <input type="password" id="password" class="form-control" placeholder="••••••••" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.75rem; font-size: 0.95rem;">
+                Login
+            </button>
+        </form>
+
+        <!-- Quick Demo Credentials Fillers -->
+        <div class="demo-helpers">
+            <p>Demo Quick Login Fillers</p>
+            <div class="demo-btn-group" style="margin-bottom: 0.75rem;">
+                <button type="button" class="btn btn-outline btn-sm" onclick="fillDemoStudent()">Student (John)</button>
+                <button type="button" class="btn btn-outline btn-sm" onclick="fillDemoAdmin()">Admin (Dr. Sarah)</button>
+            </div>
+            <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">
+                Backend not started yet?
+                <a href="#" onclick="launchDemoDirectly('STUDENT')" style="color: var(--primary); font-weight: 600; text-decoration: underline;">
+                    Instant Student Demo
+                </a>
+                or
+                <a href="#" onclick="launchDemoDirectly('ADMIN')" style="color: var(--primary); font-weight: 600; text-decoration: underline;">
+                    Instant Admin Demo
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>

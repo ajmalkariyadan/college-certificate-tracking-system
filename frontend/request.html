@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Certificate - College Certificate System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="student-dashboard.html" class="brand">
+            <span class="brand-icon">🎓</span>
+            <span>College Certificates</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="student-dashboard.html" class="nav-link">Dashboard</a></li>
+            <li><a href="request.html" class="nav-link active">Request Certificate</a></li>
+            <li><a href="tracking.html" class="nav-link">My Requests</a></li>
+            <li><a href="profile.html" class="nav-link">Profile</a></li>
+        </ul>
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <div id="nav-user-name" class="user-badge">Loading...</div>
+            <button onclick="logout()" class="btn-logout">Logout</button>
+        </div>
+    </nav>
+
+    <div class="container" style="max-width: 760px;">
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">Submit Certificate Request</h1>
+                <p class="page-subtitle">Select the required certificate type and provide the academic/official purpose.</p>
+            </div>
+            <div>
+                <a href="tracking.html" class="btn btn-outline">View My Applications &rarr;</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <form id="request-form">
+                <!-- Certificate Type Dropdown -->
+                <div class="form-group">
+                    <label class="form-label" for="certificate-select">Certificate Type</label>
+                    <select id="certificate-select" class="form-control" required>
+                        <option value="">Loading certificate options...</option>
+                    </select>
+                    <span class="form-hint">Choose the specific certificate required by your institution or organization.</span>
+                </div>
+
+                <!-- Dynamic Certificate Details Box -->
+                <div id="certificate-details" style="display: none; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 1.25rem;">
+                    <div style="font-weight: 600; color: var(--primary); margin-bottom: 0.35rem;">Certificate Details</div>
+                    <p id="cert-desc" style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.5rem;"></p>
+                    <div style="display: flex; gap: 1.5rem; font-size: 0.85rem; color: var(--text-primary);">
+                        <div><strong>Standard Processing:</strong> <span id="cert-days">-</span></div>
+                    </div>
+                </div>
+
+                <!-- Purpose Textarea -->
+                <div class="form-group">
+                    <label class="form-label" for="request-purpose">Purpose / Justification</label>
+                    <textarea id="request-purpose" class="form-control" rows="3" 
+                        placeholder="State clearly why you need this certificate (e.g. Visa interview, Bank education loan, Internship application, Transfer to university)..." required></textarea>
+                    <span class="form-hint">Minimum 10 characters. Providing accurate context expedites approval.</span>
+                </div>
+
+                <!-- Document Upload Section -->
+                <div class="card" style="background: #fbfcfe; border: 1px solid #cbd5e1; padding: 1.25rem; margin-top: 1.25rem; margin-bottom: 1.25rem;">
+                    <div style="font-weight: 700; font-size: 1rem; color: var(--primary); margin-bottom: 0.25rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span>📎</span> Supporting Document Upload
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">
+                        Attach required verification documents (Clearance slips, Student ID card, Admission slip, Marksheet).
+                    </p>
+
+                    <div class="form-group">
+                        <label class="form-label" for="document-type">Document Category</label>
+                        <select id="document-type" class="form-control">
+                            <option value="Student ID / Identity Proof">Student ID / Identity Proof</option>
+                            <option value="Marksheet / Grade Card">Marksheet / Grade Card</option>
+                            <option value="Clearance Form (Hostel/Library)">Clearance Form (Hostel/Library)</option>
+                            <option value="Enrollment / Admission Slip">Enrollment / Admission Slip</option>
+                            <option value="Other Official Proof">Other Official Proof</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 0.5rem;">
+                        <label class="form-label">Upload Document File (PDF, JPG, PNG - Max 5MB)</label>
+                        <div id="dropzone" class="upload-dropzone">
+                            <input type="file" id="request-file" accept=".pdf,.png,.jpg,.jpeg" style="display: none;">
+                            <div class="upload-icon">📁</div>
+                            <div style="font-weight: 600; font-size: 0.95rem; color: var(--text-primary); margin-bottom: 0.25rem;">
+                                Click to browse or drag and drop document here
+                            </div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">
+                                Supported formats: PDF, PNG, JPG (up to 5 MB)
+                            </div>
+                        </div>
+
+                        <!-- Selected File Preview Card -->
+                        <div id="file-preview-container" style="display: none;">
+                            <div class="file-preview-card">
+                                <div class="file-info">
+                                    <span id="preview-icon" class="file-icon">📄</span>
+                                    <div>
+                                        <div id="preview-name" class="file-name">-</div>
+                                        <div id="preview-meta" class="file-meta">-</div>
+                                    </div>
+                                </div>
+                                <button type="button" id="btn-remove-file" class="btn btn-outline btn-sm" style="color: var(--danger); border-color: #fca5a5;">
+                                    &times; Remove
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 1.75rem; display: flex; justify-content: flex-end; gap: 0.75rem;">
+                    <a href="student-dashboard.html" class="btn btn-secondary">Cancel</a>
+                    <button type="submit" class="btn btn-primary">Submit Request</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        &copy; College Certificate Request &amp; Tracking System
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/student.js"></script>
+</body>
+</html>
